@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="title">
+		Kalkulator kredytowy
+	</ui:define>
+
+	<ui:define name="pageContent">
+
+		<p:panel header="Wylicz swoją ratę miesięczną" id="pageWrapper">
+		
+			<h:form id="bla">
+				<h:panelGrid id="grid" columns="3" cellpadding="7">
+				
+				<p:autoUpdate/>
+				
+					<p:outputLabel for="kwo" value="Kwota kredytu:"/>
+				  	<p:inputNumber id="kwo" value="#{kredytBB.kwo}" minValue="0" validatorMessage="Kwota kredytu musi mieścić się w przedziale 100-1.000.000" symbol=" zł" symbolPosition="s" decimalSeperator="," thousandSeparator="." emptyValue="always" required="true" requiredMessage="Wpisz kwotę kredytu">
+				  		<f:validateDoubleRange minimum="100.00" maximum="1000000.00"/>
+				  	</p:inputNumber>
+				  	<p:message for="kwo"/>
+				  	
+				  	<p:outputLabel for="lat" value="Ilość lat spłaty:"/>
+				  	<p:inputNumber id="lat" value="#{kredytBB.lat}" minValue="0" validatorMessage="Ilość lat musi mieścić się w przedziale 1-100" decimalPlaces="0" required="true" requiredMessage="Wpisz ilość lat spłaty">
+				  		<f:validateLongRange minimum="1" maximum="100"/>
+				  	</p:inputNumber>
+				  	<p:message for="lat"/>
+				  	
+				  	<p:outputLabel for="opr" value="Oprocentowanie:"/>
+					<p:inputNumber id="opr" value="#{kredytBB.opr}" minValue="0" validatorMessage="Wysokość oprocentowania musi mieścić się w przedziale 0-100" symbol="%" symbolPosition="s" emptyValue="always" required="true" requiredMessage="Wpisz wysokość oprocentowania">
+						<f:validateDoubleRange minimum="0.00" maximum="100.00"/>
+					</p:inputNumber>
+					<p:message for="opr"/>
+				
+				</h:panelGrid>
+				
+				<p:commandButton value="Oblicz" action="#{kredytBB.oblicz()}" icon="pi pi-window-maximize" update="@form" style="margin-right: .5em"/>
+				<p:commandButton value="Oblicz (AJAX)" action="#{kredytBB.oblicz_AJAX()}" icon="pi pi-sync" update="msg"/>
+				
+				<p:messages id="msg" />
+			</h:form>
+	
+	 	</p:panel>
+ 	
+ 	</ui:define>
+ 	
+ </ui:composition>
+</html>

@@ -1,0 +1,17 @@
+@charset "UTF-8";
+#footer_text {
+	text-align: right;
+}
+
+.bottom-space{
+	margin-bottom: 1em;
+}
+
+.top-space{
+	margin-top: 1em;
+}
+
+#page_wrapper{
+	margin: 1em;
+	min-width: 700px;
+}
