@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta charset="utf-8" />
+	<title>Booker - wypożyczalnia książek</title>
+</h:head>
+<h:body>
+
+	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true" style="margin-bottom: 1em;">
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel value="Login:" />
+				<p:inputText value="#{userListBB.login}" />
+				<p:commandButton value="Szukaj" update="form-table" />
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+	
+	<h:form id="form-table" style="margin-bottom:1em;">
+		<p:dataTable value="#{userListBB.list}" var="u">
+		
+			<f:facet name="header">
+				Lista użytkowników
+			</f:facet>
+
+			<p:column headerText="Login">
+				#{u.login}
+			</p:column>
+
+			<p:column headerText="Hasło">
+				#{u.password}
+			</p:column>
+			
+			<p:column headerText="Kiedy stworzony?">
+				#{u.whencreated}
+			</p:column>
+			
+			<p:column headerText="Kiedy ostatnio zmodyfikowany?">
+				#{u.whenlastmodified}
+			</p:column>
+			
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
